@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruebaEncuestas.Api", "PruebaEncuestas.Api\PruebaEncuestas.Api.csproj", "{C504E2D7-A85C-4139-863A-A96318EA2E91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruebaEncuestas.Core", "PruebaEncuestas.Core\PruebaEncuestas.Core.csproj", "{086B883F-FC51-4452-8E83-8FD0DA30F9AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruebaEncuestas.Infrastructure", "PruebaEncuestas.Infrastructure\PruebaEncuestas.Infrastructure.csproj", "{E79A5D3D-33B8-49AB-82F5-D232F3779545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PruebaEncuestas.Web", "PruebaEncuestas.Web\PruebaEncuestas.Web.csproj", "{159D1905-02F3-429C-BE21-97C371FBD930}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptBD", "ScriptBD", "{F9CF034A-F5AE-48ED-8E37-5CB798F9AB16}"
+	ProjectSection(SolutionItems) = preProject
+		Script.sql = Script.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostmanCollection", "PostmanCollection", "{C56C9E9C-9278-489E-A9D4-C5B6631E4A0B}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Cris\Desktop\PruebaEncuestas.postman_collection.json = C:\Users\Cris\Desktop\PruebaEncuestas.postman_collection.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C504E2D7-A85C-4139-863A-A96318EA2E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C504E2D7-A85C-4139-863A-A96318EA2E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C504E2D7-A85C-4139-863A-A96318EA2E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C504E2D7-A85C-4139-863A-A96318EA2E91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{086B883F-FC51-4452-8E83-8FD0DA30F9AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{086B883F-FC51-4452-8E83-8FD0DA30F9AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{086B883F-FC51-4452-8E83-8FD0DA30F9AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{086B883F-FC51-4452-8E83-8FD0DA30F9AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E79A5D3D-33B8-49AB-82F5-D232F3779545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E79A5D3D-33B8-49AB-82F5-D232F3779545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E79A5D3D-33B8-49AB-82F5-D232F3779545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E79A5D3D-33B8-49AB-82F5-D232F3779545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{159D1905-02F3-429C-BE21-97C371FBD930}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{159D1905-02F3-429C-BE21-97C371FBD930}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{159D1905-02F3-429C-BE21-97C371FBD930}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{159D1905-02F3-429C-BE21-97C371FBD930}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0438D62D-8E60-4DA5-A0B4-7FC635E4C33C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,263 @@
+﻿@model EncuestaModel
+
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <style>
+        body {
+            margin: 20px 0;
+            font-family: 'Lato';
+            font-weight: 300;
+            font-size: 1.25rem;
+            width: 100%;
+        }
+
+        form, p {
+            margin: 20px;
+        }
+
+            p.note {
+                font-size: 1rem;
+                color: red;
+            }
+
+        input {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 4px;
+            font-family: 'Lato';
+            width: 300px;
+            margin-top: 10px;
+        }
+
+        label {
+            width: 300px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+            label span {
+                font-size: 1rem;
+                color: brown;
+            }
+
+            label.error {
+                color: red;
+                font-size: 1rem;
+                display: block;
+                margin-top: 5px;
+            }
+
+        input.error {
+            border: 1px dashed red;
+            font-weight: 300;
+            color: red;
+        }
+
+        [type="submit"], [type="reset"], button, html [type="button"] {
+            margin-left: 0;
+            border-radius: 0;
+            background: black;
+            color: white;
+            border: none;
+            font-weight: 300;
+            padding: 10px 0;
+            line-height: 1;
+        }
+    </style>
+
+    <script>
+
+        var form = $("#basic-form");
+
+        $(document).ready(function () {
+            jQuery.validator.setDefaults({
+                debug: true,
+                success: "valid"
+            });
+
+            form.validate();
+
+            $("#btn1").click(function () {
+                var f1 = $("#form1").valid();
+                if (f1) {
+
+
+                    var NombrePer = $("#NombrePart").val();
+
+                    var respuestas = "";
+                    var campos = $("#form1 input");
+                    for (var i = 0; i < campos.length; i++) {
+                        if (i != 0) {
+                            var campo = $(campos[i]);
+                            respuestas += campo.attr("id") + "_" + campo.val() + "|";
+                        }
+                    }
+
+
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json",
+                        dataType: 'json',
+                        url: "https://localhost:44379/api/Respuestas/Add",
+                        data: JSON.stringify({ FkEncuestaId: "@Model.encuestaId", NombrePersona: NombrePer, Respuestas: respuestas }),
+                        timeout: 100000,
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        success: function (data) {
+                            alert("Respuesta Guardada Correctamente");
+                            location.reload();
+                        },
+                        error: function (e) {
+                            alert("Ocurrio un error al guardar la respuesta");
+                        },
+                        done: function (e) {
+                        }
+                    });
+
+
+
+
+                }
+            });
+
+
+        });
+
+
+
+
+
+    </script>
+
+</head>
+
+    <body>
+
+
+        @if (Model.encuestaId != 0)
+        {
+
+
+        <form action="https://localhost:44379/api/Respuesta/Add" id="form2" method="POST">
+
+
+            <input type="hidden" id="EncuestaId" Name="EncuestaId" value="" />
+
+            <input type="hidden" id="NombrePersona" Name="NombrePersona" value="" />
+
+
+        </form>
+
+
+            <center><h1>@Model.encuestaNombre</h1></center>
+
+            <br />
+            <center><h2>@Model.encuestaDescripcion</h2></center>
+
+            <center>
+
+
+                <form action="/" id="form1" method="post">
+
+
+                    <p>
+                        <label for="name">
+                            
+                            Nombre Participante <span>(required)</span>
+                        </label>
+               
+                            <input id="NombrePart" name="NombrePart" type="text" required>
+                      
+
+
+                    </p>
+
+                    @foreach (var item in Model.camposEncuesta)
+                    {
+                        switch (item.tipoCampo.ToUpper())
+                        {
+                            case "TEXTO":
+
+
+                                <p>
+                                    <label for="name">
+                                        @item.tituloCampo @if (item.esRequerido.Value)
+                                        {<span>(required)</span>}
+                                    </label>
+                                    @if (item.esRequerido.Value)
+                                    {
+                                        <input id="@item.campoEncuestaId" name="@item.campoEncuestaId" type="text" required>
+                                    }
+                                    else
+                                    {
+                                        <input id="@item.campoEncuestaId" name="@item.campoEncuestaId" type="text">
+                                    }
+
+
+                                </p>
+
+
+                                break;
+                            case "NUMERO":
+                                <p>
+                                    <label for="name">
+                                        @item.tituloCampo @if (item.esRequerido.Value)
+                                        {<span>(required)</span>}
+                                    </label>
+                                    @if (item.esRequerido.Value)
+                                    {
+                                        <input id="@item.campoEncuestaId" name="@item.campoEncuestaId" type="number" required>
+                                    }
+                                    else
+                                    {
+                                        <input id="@item.campoEncuestaId" name="@item.campoEncuestaId" type="number">
+                                    }
+
+
+                                </p>
+
+                                break;
+                            case "FECHA":
+
+                                <p>
+                                    <label for="name">
+                                        @item.tituloCampo @if (item.esRequerido.Value)
+                                        {<span>(required)</span>}
+                                    </label>
+                                    @if (item.esRequerido.Value)
+                                    {
+                                        <input id="@item.campoEncuestaId" name="@item.campoEncuestaId" type="date" required>
+                                    }
+                                    else
+                                    {
+                                        <input id="@item.campoEncuestaId" name="@item.campoEncuestaId" type="date">
+                                    }
+
+
+                                </p>
+
+                                break;
+
+
+                        }
+                        <br />
+                    }
+
+
+                    
+
+
+
+                </form>
+                <input type="button" value="Enviar2" id="btn1" name="btn1" />
+            </center>
+        }
+    </body>
+
+</html>
